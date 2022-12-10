@@ -5,6 +5,7 @@ import { LoggerModule } from 'nestjs-pino';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
     imports: [
@@ -48,6 +49,8 @@ import { AppController } from './app.controller';
                 websiteDomain: process.env.SUPERTOKENS_WEBSITE_DOMAIN as string,
             },
         }),
+
+        ProfileModule,
     ],
     controllers: [AppController],
 })

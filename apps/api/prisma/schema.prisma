@@ -11,7 +11,51 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id String @id @unique
+  name String
+  email String @unique
+  mobile String @unique
+  bio String
+  dob DateTime
+  pronoun Gender
+  partnerPronoun Gender
+  passYear Int
+  department Department
+  interests Interest[]
+  verified Boolean @default(false)
+  likes Like[] @relation("Likes")
+  likedBy Like[] @relation("LikedBy")
+}
+
+enum Department{
+  CSE @map("Computer Science and Engineering")
+  ECE @map("Electronics and Communication Engineering")
+  ME @map("Mechanical Engineering")
+  EEE @map("Electrical and Electronics Engineering")
+  CE @map("Civil Engineering")
+  AI @map("Artificial Intelligence")
+  CY @map("Cyber Security")
+  MBA @map("Master of Business Administration")
+  MCA @map("Master of Computer Applications")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model Interest {
+  id String @id @default(cuid()) @unique
+  name String
+  description String
+  users User[]
+}
+
+model Like {
+  id String @id @default(cuid()) @unique
+  user User @relation("Likes", fields: [userId], references: [id])
+  userId String
+  likedUser User @relation("LikedBy" ,fields: [likedUserId], references: [id])
+  likedUserId String
 }
