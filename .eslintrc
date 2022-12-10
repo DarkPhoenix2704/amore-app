@@ -25,7 +25,9 @@
         "airbnb",
         "airbnb-typescript",
         "airbnb/hooks",
-        "prettier"
+        "prettier",
+        "prettier/react",
+        "prettier/@typescript-eslint"
     ],
     "rules": {
         "react/jsx-props-no-spreading": "off",
