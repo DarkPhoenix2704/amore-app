@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+    db:
+        image: postgres:14
+        container_name: api-db
+        volumes:
+            - ./tmp/pg:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=dating-app
+networks:
+    app_network:
+        driver: bridge
