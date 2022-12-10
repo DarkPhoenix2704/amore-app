@@ -22,10 +22,10 @@ export class ProfileController {
     ) {
         try {
             const authId = session.getUserId();
-            const mobile = (await Passwordless.getUserById({ userId: authId }))!.phoneNumber!;
+            const email = (await Passwordless.getUserById({ userId: authId }))!.email!;
             const createProfile = createProfileDto;
             createProfile.id = authId;
-            createProfile.mobile = mobile;
+            createProfile.email = email;
             return await this.profilesService.createUser(createProfile);
         } catch (err) {
             throw new CreateException(err);

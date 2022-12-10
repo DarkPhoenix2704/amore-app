@@ -9,15 +9,15 @@ import { ConfigInjectionToken, AuthModuleConfig } from '../config.interface';
 export class SupertokensService {
     constructor(@Inject(ConfigInjectionToken) private config: AuthModuleConfig) {
         supertokens.init({
-            appInfo: config.appInfo,
+            appInfo: this.config.appInfo,
             supertokens: {
-                connectionURI: config.connectionURI,
-                apiKey: config.apiKey,
+                connectionURI: this.config.connectionURI,
+                apiKey: this.config.apiKey,
             },
             recipeList: [
                 Passwordless.init({
                     flowType: 'USER_INPUT_CODE',
-                    contactMethod: 'PHONE',
+                    contactMethod: 'EMAIL',
                 }),
                 Session.init(),
             ],
