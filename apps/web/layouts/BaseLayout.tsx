@@ -13,8 +13,8 @@ export const BaseLayout = ({ children }: Child) => {
         router.push('/auth');
     };
 
-    const profileDirect = () => {
-        router.push('/profile');
+    const homeDirect = () => {
+        router.push('/home');
     };
     const path = router.pathname;
 
@@ -31,13 +31,15 @@ export const BaseLayout = ({ children }: Child) => {
 
     return (
         <Flex
+            background="linear-gradient(162.36deg, #E5DEF2 -0.64%, #FAFAFA 125.31%)"
             flexDirection="column"
             justifyContent="space-between"
             minH="100vh"
-            p={{ base: '20px', sm: '30px', md: '74px' }}
-            pt={{ base: '40px', md: '50px' }}
         >
-            <TopBar />
+            <TopBar
+                btnFunc={doesSessionExist ? homeDirect : redirect}
+                btnText={doesSessionExist ? 'Find a Date' : 'Join'}
+            />
             {children}
             <Footer />
         </Flex>

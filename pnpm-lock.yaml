@@ -90,6 +90,7 @@ importers:
       '@chakra-ui/react': ^2.4.3
       '@emotion/react': ^11.10.5
       '@emotion/styled': ^11.10.5
+      '@fontsource/nunito': ^4.5.11
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.9
       axios: ^1.2.1
@@ -105,6 +106,7 @@ importers:
       '@chakra-ui/react': 2.4.3_366jsnbj2fqgpp64v3qddukxli
       '@emotion/react': 11.10.5_kzbn2opkn2327fwg5yzwzya5o4
       '@emotion/styled': 11.10.5_qvatmowesywn4ye42qoh247szu
+      '@fontsource/nunito': 4.5.11
       axios: 1.2.1
       framer-motion: 7.6.19_biqbaboplfbrettd7655fr4n2y
       next: 13.0.6_biqbaboplfbrettd7655fr4n2y
@@ -1543,6 +1545,10 @@ packages:
       send: 0.18.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@fontsource/nunito/4.5.11:
+    resolution: {integrity: sha512-j2WIvzsI+6wjbJ/gQjyHJL/SYZxyg1qomvRswMZAWj2lvv+eX4kzJOSbr9YhZLYywoMspYb0643EO4cHRy6zpQ==}
     dev: false
 
   /@hapi/hoek/9.3.0:

@@ -20,8 +20,8 @@ async function bootstrap() {
     await app.register(plugin);
     fastify.setErrorHandler(errorHandler());
     const config = new DocumentBuilder()
-        .setTitle('Dating App APIs')
-        .setDescription('APIs provided by Dating App')
+        .setTitle('Amore App APIs')
+        .setDescription('APIs provided by Amore')
         .setVersion('0.0.1')
         .build();
     const document = SwaggerModule.createDocument(app, config);

@@ -6,7 +6,7 @@ import { ENV } from '../config';
 export const authConfig = () => {
     return {
         appInfo: {
-            appName: ENV.appName || 'dating-app',
+            appName: ENV.appName || 'Amore',
             apiDomain: ENV.apiDomain || 'http://localhost:8000',
             websiteDomain: ENV.domain || 'http://localhost:3000',
         },
