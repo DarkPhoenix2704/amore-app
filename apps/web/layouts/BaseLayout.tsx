@@ -39,6 +39,7 @@ export const BaseLayout = ({ children }: Child) => {
             <TopBar
                 btnFunc={doesSessionExist ? homeDirect : redirect}
                 btnText={doesSessionExist ? 'Find a Date' : 'Join'}
+                showNav={path !== '/wizard'}
             />
             {children}
             <Footer />

@@ -33,9 +33,16 @@ export class ProfileService {
         if (userByEmail != null && userByEmail.data != null) {
             throw new CreateException('User with same email exists');
         }
+        const interestArray = createProfileDto.interests.map((id: string) => ({
+            id,
+        }));
+        console.log('interestArray', interestArray);
         const resp = await this.prismaService.user.create({
             data: {
                 ...createProfileDto,
+                interests: {
+                    connect: interestArray,
+                },
             },
         });
 
@@ -50,6 +57,10 @@ export class ProfileService {
         const resp = await this.prismaService.user.findFirst({
             where: {
                 id,
+            },
+            include: {
+                interests: true,
+                college: true,
             },
         });
         return this.Success({
@@ -80,10 +91,27 @@ export class ProfileService {
         if (EmailResp.data != null) {
             throw new UpdateException('Email exists');
         }
-        const resp = await this.prismaService.user.update({
-            where: { id },
-            data: updateProfileDto,
-        });
+        let resp;
+        if (updateProfileDto.interests === undefined) {
+            resp = await this.prismaService.user.update({
+                where: { id },
+                //@ts-ignore
+                data: updateProfileDto,
+            });
+        } else {
+            const interestArray = updateProfileDto.interests.map((id: string) => ({
+                id,
+            }));
+            resp = await this.prismaService.user.update({
+                where: { id },
+                data: {
+                    ...updateProfileDto,
+                    interests: {
+                        connect: interestArray,
+                    },
+                },
+            });
+        }
         return this.Success({
             data: resp,
             message: 'User info was updated succesfully',

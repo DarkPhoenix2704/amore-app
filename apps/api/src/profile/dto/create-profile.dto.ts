@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsDate, IsInt, IsNotEmpty, IsString } from 'class-validator';
-import { Department, Gender } from '@prisma/client';
+import { IsArray, IsBoolean, IsDate, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { Department, Interest, Pronoun } from '@prisma/client';
 
 export class CreateProfileDto {
     @ApiProperty()
@@ -14,7 +14,6 @@ export class CreateProfileDto {
 
     @ApiProperty()
     @IsString()
-    @IsNotEmpty()
     email: string;
 
     @ApiProperty()
@@ -35,12 +34,12 @@ export class CreateProfileDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    pronoun: Gender;
+    pronoun: Pronoun;
 
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    partnerPronoun: Gender;
+    partnerPronoun: Pronoun;
 
     @ApiProperty()
     @IsInt()
@@ -55,4 +54,13 @@ export class CreateProfileDto {
     @ApiProperty()
     @IsBoolean()
     isVerified: boolean;
+
+    @ApiProperty()
+    @IsArray()
+    interests: Array<string>;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    collegeId: string;
 }

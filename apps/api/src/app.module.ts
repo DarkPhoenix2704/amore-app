@@ -1,3 +1,4 @@
+import { NocoModule } from './noco/noco.module';
 import Joi from 'joi';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -51,6 +52,7 @@ import { ProfileModule } from './profile/profile.module';
         }),
 
         ProfileModule,
+        NocoModule,
     ],
     controllers: [AppController],
 })

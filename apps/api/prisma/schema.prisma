@@ -13,12 +13,14 @@ datasource db {
 model User {
   id String @id @unique
   name String
+  college College @relation(fields: [collegeId], references: [id])
+  collegeId String
   email String @unique
   mobile String @unique
   bio String
   dob DateTime
-  pronoun Gender
-  partnerPronoun Gender
+  pronoun Pronoun
+  partnerPronoun Pronoun
   passYear Int
   department Department
   interests Interest[]
@@ -39,16 +41,22 @@ enum Department{
   MCA @map("Master of Computer Applications")
 }
 
-enum Gender {
-  MALE
-  FEMALE
-  OTHER
+enum Pronoun {
+  HE @map("He/Him")
+  SHE @map("She/Her")
+  THEY @map("They/Them")
 }
 
 model Interest {
   id String @id @default(cuid()) @unique
   name String
   description String
+  users User[]
+}
+
+model College {
+  id String @id @default(cuid()) @unique
+  name String
   users User[]
 }
 

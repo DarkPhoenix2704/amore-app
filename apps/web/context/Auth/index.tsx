@@ -14,9 +14,7 @@ export const AuthContext = ({ children }: { children: React.ReactNode }) => {
     const session = useSessionContext();
     const { doesSessionExist } = session as any;
 
-    // listening for route change events
     Router.events.on('routeChangeStart', () => {
-        // when route change loading screen popup
         setUserLoading(true);
     });
     Router.events.on('routeChangeComplete', () => {
@@ -31,11 +29,12 @@ export const AuthContext = ({ children }: { children: React.ReactNode }) => {
                 throw new Error();
             }
             if (data.Success && data.data === null) {
-                localStorage.removeItem('isWizardCompleted');
-                router.push('/wizard');
+                if (path !== '') {
+                    localStorage.removeItem('isWizardCompleted');
+                    router.push('/wizard');
+                }
             }
             if (data.Success && data.data) {
-                // setting the info about the wizard in localstorage so that we can access it in supertokens redirection
                 setUser(data.data);
                 localStorage.setItem('isWizardCompleted', 'YES');
             }

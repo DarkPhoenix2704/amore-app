@@ -17,6 +17,7 @@ async function bootstrap() {
         allowedHeaders: ['content-type', ...supertokens.getAllCORSHeaders()],
         credentials: true,
     });
+
     await app.register(plugin);
     fastify.setErrorHandler(errorHandler());
     const config = new DocumentBuilder()

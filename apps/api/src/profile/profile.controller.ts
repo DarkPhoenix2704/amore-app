@@ -21,11 +21,13 @@ export class ProfileController {
         @Session() session: SessionContainer,
     ) {
         try {
+            console.log('createProfileDto', createProfileDto);
+
             const authId = session.getUserId();
             const email = (await Passwordless.getUserById({ userId: authId }))!.email!;
             const createProfile = createProfileDto;
-            createProfile.id = authId;
             createProfile.email = email;
+            createProfile.id = authId;
             return await this.profilesService.createUser(createProfile);
         } catch (err) {
             throw new CreateException(err);
